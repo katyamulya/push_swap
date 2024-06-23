@@ -6,7 +6,7 @@
 /*   By: kdvarako <kdvarako@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:45:03 by kdvarako          #+#    #+#             */
-/*   Updated: 2024/06/22 13:20:38 by kdvarako         ###   ########.fr       */
+/*   Updated: 2024/06/23 20:02:44 by kdvarako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	initlist(char **s, int i, t_stack **a)
 	t_stack	*node;
 	int		count;
 
+	count = 0;
 	while (s[i] != NULL)
 	{
 		node = ft_lst_new(ft_atoi(s[i]));
@@ -53,46 +54,57 @@ void	initlist(char **s, int i, t_stack **a)
 	}
 }
 
-void	free_all(char **s, t_stack **a, t_stack **b)
+void	free_s(char **s)
 {
 	int	i;
 
 	i = 0;
 	if (!s)
 		return ;
-	while (s[i] != NULL)
+	else
 	{
-		free(s[i]);
-		i++;
+		while (s[i] != NULL)
+		{
+			free(s[i]);
+			i++;
+		}
+		free(s);
+		s = NULL;
 	}
-	free(s);
+}
+
+void	free_all(char **s, t_stack **a, t_stack **b)
+{
+	free_s(s);
 	ft_lst_free(a);
 	ft_lst_free(b);
 }
 
 int	main(int argc, char **argv)
 {
-	t_stack	**a;
-	t_stack	**b;
+	t_stack	*a;
+	t_stack	*b;
 	char	**s;
 	int		count;
 
+	s = NULL;
+	count = 0;
+	a = NULL;
+	b = NULL;
 	if (argc == 2)
 		s = ft_split(argv[1], ' ');
 	if (check_errors(argc, argv, s) == -1)
 	{
-		free_all(s, a, b);
+		free_s(s);
 		return (-1);
 	}
-	a = malloc(sizeof(t_list *));
-	b = malloc(sizeof(t_list *));
 	if (argc == 2)
-		initlist(s, 0, a);
+		initlist(s, 0, &a);
 	else
-		initlist(argv, 1, a);
-	count = 0;
-	if (ft_lst_ifsorted(a) == -1)
-		count = sort(a, b);
-	free_all(s, a, b);
+		initlist(argv, 1, &a);
+	if (ft_lst_ifsorted(&a) == -1)
+		count = sort(&a, &b);
+	ft_lst_print(&a);
+	free_all(s, &a, &b);
 	return (0);
 }
