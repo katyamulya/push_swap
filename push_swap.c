@@ -6,7 +6,7 @@
 /*   By: kdvarako <kdvarako@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:45:03 by kdvarako          #+#    #+#             */
-/*   Updated: 2024/06/23 20:02:44 by kdvarako         ###   ########.fr       */
+/*   Updated: 2024/06/24 15:38:42 by kdvarako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,6 @@ int	main(int argc, char **argv)
 		initlist(argv, 1, &a);
 	if (ft_lst_ifsorted(&a) == -1)
 		count = sort(&a, &b);
-	ft_lst_print(&a);
 	free_all(s, &a, &b);
 	return (0);
 }
