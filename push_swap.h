@@ -6,7 +6,7 @@
 /*   By: kdvarako <kdvarako@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:44:37 by kdvarako          #+#    #+#             */
-/*   Updated: 2024/06/22 12:26:03 by kdvarako         ###   ########.fr       */
+/*   Updated: 2024/06/24 15:34:43 by kdvarako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ t_stack	*ft_lst_last(t_stack *lst);
 t_stack	*ft_lst_new(int content);
 int		ft_lst_size(t_stack *lst);
 void	ft_lst_index(t_stack **lst);
-void	ft_lst_print(t_stack **lst);
 int		ft_lst_ifsorted(t_stack **a);
 int		ft_checkerr(char **s, int fl);
 int		ft_lst_indexofmax(t_stack **lst);
