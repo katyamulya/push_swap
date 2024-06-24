@@ -6,7 +6,7 @@
 /*   By: kdvarako <kdvarako@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 11:36:34 by kdvarako          #+#    #+#             */
-/*   Updated: 2024/06/03 12:38:55 by kdvarako         ###   ########.fr       */
+/*   Updated: 2024/06/24 16:11:39 by kdvarako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	ft_lst_ifsorted(t_stack **a)
 	t_stack	*node;
 	int		len;
 
+	if (*a == NULL)
+		return (0);
 	node = *a;
 	i = 0;
 	len = ft_lst_size(node);
