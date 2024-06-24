@@ -6,7 +6,7 @@
 /*   By: kdvarako <kdvarako@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 16:50:42 by kdvarako          #+#    #+#             */
-/*   Updated: 2024/06/21 17:02:12 by kdvarako         ###   ########.fr       */
+/*   Updated: 2024/06/24 13:37:35 by kdvarako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,13 @@ int	movetop1(t_stack **a, t_stack **b, int i_node, int i_target)
 
 	n = ft_lst_size(*b) - i_node;
 	m = ft_lst_size(*a) - i_target;
-	if (n < m)
-		return (l_rr_reverse_rotate(b, a, n) + l_reverse_rotate(a, (m - n), 1));
+	//printf("m=%d, n=%d\n", m, n);
+	if (m == n)
+		return (l_rr_reverse_rotate(a, b, n));
+	else if (n < m)
+		return (l_rr_reverse_rotate(a, b, n) + l_reverse_rotate(a, (m - n), 1));
 	else
-		return (l_rr_reverse_rotate(b, a, m) + l_reverse_rotate(b, (n - m), 2));
+		return (l_rr_reverse_rotate(a, b, m) + l_reverse_rotate(b, (n - m), 2));
 }
 
 int	movetop(t_stack **a, t_stack **b, int i_node, int i_target)
@@ -32,6 +35,7 @@ int	movetop(t_stack **a, t_stack **b, int i_node, int i_target)
 
 	median1 = ft_lst_size(*b) / 2;
 	median2 = ft_lst_size(*a) / 2;
+	//printf("i_node=%d, i_target=%d, med1=%d, med2=%d\n", i_node, i_target, median1, median2);
 	if (i_node == 0)
 		return (nodetop(a, i_target, median2, 1));
 	if (i_target == 0)
@@ -46,5 +50,5 @@ int	movetop(t_stack **a, t_stack **b, int i_node, int i_target)
 			+ l_rotate(b, (i_node - i_target), 2));
 	if (i_node > median1 && i_target > median2)
 		return (movetop1(a, b, i_node, i_target));
-	return (nodetop(b, i_node, median1, 1) + nodetop(a, i_target, median2, 2));
+	return (nodetop(b, i_node, median1, 2) + nodetop(a, i_target, median2, 1));
 }
